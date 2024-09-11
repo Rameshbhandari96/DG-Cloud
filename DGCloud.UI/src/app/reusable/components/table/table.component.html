@@ -1,3 +1,11 @@
+<div class="row">
+    <div class="col-9">
+
+    </div>
+    <div class="col-3 text-end">
+        <input type="text" [(ngModel)]="searchedText" (ngModelChange)="onSearchChange($event)" class="form-controle m-2" placeholder="Search">
+    </div>
+</div>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -7,9 +15,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of tableData;let sr = index">
+        <tr *ngFor="let data of filteredData;let sr = index">
             <td>{{sr}}</td>
-            <td *ngFor="let column of columnArray">
+            <td *ngFor="let column of columnArray" >
                 {{data[column]}}
                 <!-- {{item}} : {{data |json}} -->
             </td>
