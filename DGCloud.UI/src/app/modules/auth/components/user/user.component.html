@@ -1,0 +1,9 @@
+<div class="mt-1 mb-2 p-3 bg-success text-white rounded text-center">
+    <h2>Reusable Table Components</h2>
+    <h4>Using Input(), Output()</h4>
+</div>
+<div class="row">
+    <div class="col-12">
+       <app-table [columnArray]="['name','username','email','phone','website']" [tableData]="userArray" [isActionTable]="true" (onEdit)="editUser($event)" (onDelete)="deleteUser($event)"></app-table>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+export const dgConstatnt={
+    API_URL:"https://localhost:7116/api/",
+    APIEndoints:{
+
+    },
+    Menus:[
+        {
+            path:'',
+            label:'',
+            roles:['Admin']
+        }
+    ]
+
+}

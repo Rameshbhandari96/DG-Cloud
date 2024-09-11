@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th *ngFor="let column of columnArray">{{column}}</th>
+            <th *ngIf="isActionTable">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of tableData;let sr = index">
+            <td>{{sr}}</td>
+            <td *ngFor="let column of columnArray">
+                {{data[column]}}
+                <!-- {{item}} : {{data |json}} -->
+            </td>
+            <td *ngIf="isActionTable">
+                <button class="btn btn-sm btn-success" (click)="onEditRecord(data)">Edit</button>
+                <button class="btn btn-sm btn-danger ms-2" (click)="onDeleteRecord(data)">Delete</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
