@@ -2,8 +2,6 @@
   <div class="container-fluid bg-body-tertiary dark__bg-gray-1200">
     <div class="bg-holder bg-auth-card-overlay" style="background-image:url(../../../assets/img/bg/37.png);">
     </div>
-    <!--/.bg-holder-->
-
     <div class="row flex-center position-relative min-vh-100 g-0 py-5">
       <div class="col-11 col-sm-10 col-xl-8">
         <div class="card border border-translucent auth-card">
@@ -16,9 +14,8 @@
                 <!--/.bg-holder-->
 
                 <div class="position-relative px-4 px-lg-7 pt-7 pb-7 pb-sm-5 text-center text-md-start pb-lg-7 pb-md-7">
-                  <h3 class="mb-3 text-body-emphasis fs-7">Phoenix Authentication</h3>
-                  <p class="text-body-tertiary">Give yourself some hassle-free development process with the uniqueness
-                    of Phoenix!</p>
+                  <h3 class="mb-3 text-body-emphasis fs-7">DGCloud Authentication</h3>
+                  <p class="text-body-tertiary">Manage your organization with dgcloud software without any worries of tally</p>
                   <ul class="list-unstyled mb-0 w-max-content w-md-auto">
                     <li class="d-flex align-items-center"><span
                         class="uil uil-check-circle text-success me-2"></span><span
@@ -36,7 +33,7 @@
                     alt="" /><img class="auth-title-box-img d-light-none"
                     src="../../../assets/img/spot-illustrations/auth-dark.png" alt="" /></div>
               </div>
-              <div class="col mx-auto">
+              <div class="col mx-auto" ngSkipHydration>
                 <div class="auth-form-box">
                   <div class="text-center mb-7"><a class="d-flex flex-center text-decoration-none mb-4"
                       href="../../../index.html">
@@ -47,41 +44,65 @@
                     <h3 class="text-body-highlight">Sign In</h3>
                     <p class="text-body-tertiary">Get access to your account</p>
                   </div>
-                  <button class="btn btn-phoenix-secondary w-100 mb-3"><span
-                      class="fab fa-google text-danger me-2 fs-9"></span>Sign in with google</button>
-                  <button class="btn btn-phoenix-secondary w-100"><span
-                      class="fab fa-facebook text-primary me-2 fs-9"></span>Sign in with facebook</button>
-                  <div class="position-relative">
-                    <hr class="bg-body-secondary mt-5 mb-4" />
-                    <div class="divider-content-center bg-body-emphasis">or use email</div>
-                  </div>
                   <div class="mb-3 text-start">
-                    <label class="form-label" for="email">Email address</label>
-                    <div class="form-icon-container">
-                      <input class="form-control form-icon-input" id="email" type="email"
-                        placeholder="name@example.com" /><span class="fas fa-user text-body fs-9 form-icon"></span>
+                    <label class="form-label" for="username">User Name</label>
+                    <div class="form-icon-container" >
+                      <input 
+                        class="form-control form-icon-input" 
+                        [(ngModel)]="loginObj.username" 
+                        id="username" 
+                        type="text"
+                        placeholder="Enter your username" />
+                        <span  
+                          class="fas fa-user text-body fs-9 form-icon"
+                        ></span>
                     </div>
                   </div>
                   <div class="mb-3 text-start">
                     <label class="form-label" for="password">Password</label>
                     <div class="form-icon-container">
-                      <input class="form-control form-icon-input" id="password" type="password"
-                        placeholder="Password" /><span class="fas fa-key text-body fs-9 form-icon"></span>
+                      <input name="password"
+                        class="form-control form-icon-input"
+                        [(ngModel)]="loginObj.password"
+                        id="password"
+                        [type]="showPassword ? 'text' : 'password' "
+                        placeholder="Password"
+                      />
+                      <span
+                        class="fas text-body fs-9 form-icon fa-eye-slash"
+                        style="cursor: pointer;"
+                        aria-hidden="true"
+                        id="toggleeye"
+                      ></span>
                     </div>
                   </div>
-                  <div class="row flex-between-center mb-7">
-                    <div class="col-auto">
-                      <div class="form-check mb-0">
-                        <input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />
-                        <label class="form-check-label mb-0" for="basic-checkbox">Remember me</label>
-                      </div>
+                  <div class="mb-3 text-start">
+                    <div class="form-check mb-0">
+                      <input 
+                        class="form-check-input" 
+                        id="basic-checkbox showPasswordCheckbox" 
+                        type="checkbox" 
+                        (change)="togglePassword($event)"
+                      />
+                      <label class="form-check-label mb-0" for="basic-checkbox">Show password</label>
                     </div>
-                    <div class="col-auto"><a class="fs-9 fw-semibold"
-                        href="../../../pages/authentication/card/forgot-password.html">Forgot Password?</a></div>
                   </div>
-                  <button class="btn btn-primary w-100 mb-3">Sign In</button>
-                  <div class="text-center"><a class="fs-9 fw-bold"
-                      href="../../../pages/authentication/card/sign-up.html">Create an account</a></div>
+                  <div class="mb-3 text-start">
+                    <label class="form-label" for="domain">Domain</label>
+                    <div class="form-icon-container">
+                      <input
+                        class="form-control form-icon-input" 
+                        [(ngModel)]="loginObj.domain" 
+                        id="domain"
+                        type="text"
+                        placeholder="Domain Of You Org."
+                      />
+                        <span  
+                          class="fas fa-home fs-9 form-icon"
+                        ></span>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary w-100 mb-3" (click)="onSignIn()">Sign In</button>
                 </div>
               </div>
             </div>

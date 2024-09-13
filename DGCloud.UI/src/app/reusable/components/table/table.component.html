@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of filteredData;let sr = index">
-            <td>{{sr}}</td>
+            <td>{{sr+1}}</td>
             <td *ngFor="let column of columnArray" >
                 {{data[column]}}
                 <!-- {{item}} : {{data |json}} -->
