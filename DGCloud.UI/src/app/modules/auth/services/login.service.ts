@@ -11,10 +11,11 @@ export class LoginService  {
     private http:HttpClient
   ) { }
   onLogin(loginObj:Login){
-    return this.http.post("https://localhost:7152/api/Authentication/Login",loginObj);
+    debugger;
+    return this.http.post("https://localhost:7173/auth-gate/Authentication/Login",loginObj);
   }
   getUsers(){
-    return this.http.get("https://localhost:7152/api/Users");
+    return this.http.get("https://localhost:7173/auth-gate/Users");
   }
   
 }

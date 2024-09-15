@@ -4,6 +4,6 @@
 </div>
 <div class="row">
     <div class="col-12">
-       <app-table [columnArray]="['name','username','email','phone','website']" [tableData]="userArray" [isActionTable]="true" (onEdit)="editUser($event)" (onDelete)="deleteUser($event)"></app-table>
+       <app-table [columnArray]="['username','passwordHash','createdDate','modifiedDate']" [tableData]="userArray" [isActionTable]="true" (onEdit)="editUser($event)" (onDelete)="deleteUser($event)"></app-table>
     </div>
 </div>

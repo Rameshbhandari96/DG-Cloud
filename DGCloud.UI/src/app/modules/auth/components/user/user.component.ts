@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TableComponent } from '../../../../reusable/components/table/table.component';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-user',
@@ -13,13 +14,17 @@ import { TableComponent } from '../../../../reusable/components/table/table.comp
 export class UserComponent implements OnInit{
   userArray:any[]=[];
   constructor(private http:HttpClient){  }
+  loginService = inject(LoginService);
 
   ngOnInit(): void {
     this.getUsers();
   }
   getUsers(){
-    this.http.get("https://jsonplaceholder.typicode.com/users").subscribe((res:any)=>{
+    this.loginService.getUsers().subscribe((res:any)=>{
       this.userArray=res;
+      if(res.success){
+        this.userArray=res.data;
+      }
     });
   }
   editUser(data:any){

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-vertical navbar-expand-lg">
+  <script>
+    var navbarStyle = window.config.config.phoenixNavbarStyle;
+    if (navbarStyle && navbarStyle !== 'transparent') {
+      document.querySelector('body').classList.add(`navbar-${navbarStyle}`);
+    }
+  </script>
+  <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+    <div class="navbar-vertical-content">
+      <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+        <li class="nav-item" *ngFor="let module of navBarList">
+          <p class="navbar-vertical-label" *ngIf="module.modulesName">{{ module.modulesName }}</p>
+          <hr class="navbar-vertical-line" />
+          <div class="nav-item-wrapper" *ngFor="let rootMenu of module.navRootComponents">
+            <a class="nav-link dropdown-indicator label-1"
+               [href]="'#' + (rootMenu.label | lowercase | replace: ' ' : '-')"
+               role="button" data-bs-toggle="collapse"
+               [attr.aria-expanded]="false"
+               [attr.aria-controls]="rootMenu.label | lowercase | replace: ' ' : '-'">
+               <div class="d-flex align-items-center">
+                 <div class="dropdown-indicator-icon">
+                   <span class="fas fa-caret-right"></span>
+                 </div>
+                 <span class="nav-link-icon">
+                   <span data-feather="grid"></span>
+                 </span>
+                 <span class="nav-link-text">{{ rootMenu.label }}</span>
+               </div>
+            </a>
+            <div class="parent-wrapper label-1">
+              <ul class="nav collapse parent" [attr.id]="rootMenu.label | lowercase | replace: ' ' : '-'"
+                  data-bs-parent="#navbarVerticalCollapse">
+                <li class="collapsed-nav-item-title d-none">
+                  {{ rootMenu.label }}
+                </li>
+                <li class="nav-item" *ngFor="let menuItem of rootMenu.menuLists">
+                  <a class="nav-link" [routerLink]="menuItem.path" data-bs-toggle="" aria-expanded="false">
+                    <div class="d-flex align-items-center">
+                      <span class="nav-link-text">{{ menuItem.label }}</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="navbar-vertical-footer">
+    <button 
+      class="btn navbar-vertical-toggle border-0 fw-semibold w-100 white-space-nowrap d-flex align-items-center">
+      <span class="uil uil-left-arrow-to-left fs-8"></span>
+      <span class="uil uil-arrow-from-right fs-8"></span>
+      <span class="navbar-vertical-footer-text ms-2">Collapsed View</span>
+    </button>
+  </div>
+</nav>
