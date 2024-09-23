@@ -1,6 +1,7 @@
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/Login';
+import { MasterServiceService } from '../../../core/masterService/master-service.service';
 
 
 @Injectable({
@@ -8,14 +9,14 @@ import { Login } from '../models/Login';
 })
 export class LoginService  {
   constructor(
-    private http:HttpClient
+    private masterService:MasterServiceService
   ) { }
   onLogin(loginObj:Login){
     debugger;
-    return this.http.post("https://localhost:7173/auth-gate/Authentication/Login",loginObj);
+    return this.masterService.post<any>("https://localhost:7173/auth-gate/Authentication/Login",loginObj);
   }
   getUsers(){
-    return this.http.get("https://localhost:7173/auth-gate/Users");
+    return this.masterService.get<any>("https://localhost:7173/auth-gate/Users");
   }
   
 }
